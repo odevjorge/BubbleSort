@@ -7,7 +7,6 @@ c = 0
 quantasTrocas = 0
 
 loop do
-  print "\n>> reset da quantidade de trocas"
   c = 0
   quantasTrocas = 0
   while c != lista.length - 1
