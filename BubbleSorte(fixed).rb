@@ -101,7 +101,7 @@ def main()
     $lista = gets.chomp.strip.split(" ")
     bubblecore()
   else
-    print "Entrada incorreta digite novamente: "
+    print "\nEntrada incorreta digite novamente: "
     main()
   end
 end
