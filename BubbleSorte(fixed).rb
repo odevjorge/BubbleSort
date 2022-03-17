@@ -1,20 +1,6 @@
-# Função para pegar do usuario ou automaticamente uma lista de numeros
-def listaNumeros(tipo)
-  if tipo.upcase == "AUTO"
-    lista = ["4", "31", "8", "40", "73", "28", "93", "56", "97", "77"]
-  else
-    print "Digite a lista de numeros: " #   4	 31	 68	 40	 73	 28	 93	 56	 92	 77
-    lista = gets.chomp.strip.split(" ")
-  end
-
-  return lista
-end
-
 # Minifunção para verificar item que tem a maior quantidade de digitos
-def maiorDigito()
-  lista = listaNumeros("auto")
+def maiorDigito(lista)
   maiorDigito = "0"
-
   for c in lista
     if c.length > maiorDigito.length
       maiorDigito = c
@@ -26,16 +12,16 @@ end
 
 # Minifunção para colocar 0 a esquerda
 def organizandoNum(numero)
-  numero = numero.rjust(maiorDigito(), "0")
+  numero = numero.rjust(maiorDigito($lista), "0")
 
   return numero
 end
 
 # Organizando numeros para terem a memsa quantidade de digitos
-def listaReestruturada()
-  lista = listaNumeros("auto")
+def listaReestruturada(lista)
+  print ">>", lista
   for i in 0..lista.length - 1
-    if lista[i].length < maiorDigito
+    if lista[i].length < maiorDigito($lista)
       lista[i] = organizandoNum(lista[i])
     end
   end
@@ -51,7 +37,7 @@ def saidaMunita(lista, verificando)
   for c in lista
     print c, " "
   end
-  print "\n#{(" " * 3) * verificando}#{"-----"}"
+  print "\n#{((" " * maiorDigito($lista)) + " ") * verificando}#{(("-" * maiorDigito($lista)) * 2) + ("-" * 1)}"
 
   print "\n\nEstado: \n"
 
@@ -68,7 +54,7 @@ end
 
 # É o core, o "nucleo" principal do programa
 def bubblecore()
-  lista = listaReestruturada()
+  lista = listaReestruturada($lista)
   trocas = 0
 
   # Loop com a condição que SE NÃO TIVER MAS TROCAS ELE SAIR DO LOOP
@@ -93,10 +79,31 @@ def bubblecore()
 
     # IF que faz quebra o loop se não tiver mas trocas
     if trocas == 0
+      print "\e[2J\e[f"
+      print "A lista de numeros foi organizada\n"
+      for i in lista
+        print "#{i} "
+      end
       break
     end
   end
 end
 
-# chamando o bubblecore
-bubblecore()
+
+def main()
+  print "Digite 1 para numeros automaticos ou 2 para entrada manual [1/2]: "
+  entrada = gets.chomp.to_i
+  if entrada == 1
+    $lista = ["4", "31", "8", "40", "73", "28", "93", "56", "97", "77"]
+    bubblecore()
+  elsif entrada == 2
+    print "Digite a lista de numeros:\n>>> "
+    $lista = gets.chomp.strip.split(" ")
+    bubblecore()
+  else
+    print "Entrada incorreta digite novamente: "
+    main()
+  end
+end
+
+main()
