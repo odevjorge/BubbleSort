@@ -1,8 +1,8 @@
-# Algorito BubbleSorte em Ruby
+# Algorito BubbleSort em Ruby
 
 <p>Desafio fazer o algoritmo BUBBLESORTE</p>
 
-<p>Não foi facil mas a gente tenta</p>
+<p>Feito por eu :)</p>
 
 <ul>Info: </ul>
 <li>Foi difícil mas a gente tenta</li>
